@@ -1,40 +1,39 @@
-# Solfa Coach Android
+# مربی سولفژ — Solfa Coach v1.1.0
 
-Native Android solfege trainer with real microphone pitch detection.
+Native Android app with microphone pitch detection and Free/Premium access.
 
-## Features
-- Single-note training: Do, Re, Mi, Fa, Sol, La, Ti, upper Do
-- Plays the target note
-- Records from the Android microphone using AudioRecord
-- Detects pitch/frequency instead of speech-to-text
-- Shows detected Hz, note name and cents error
-- Guides the singer higher/lower until the note is correct
-- Pattern practice with three difficulty levels
-- Famous melodies: Ode to Joy, Twinkle Twinkle, Happy Birthday, Amazing Grace
-- Every section has its own microphone practice mode
+## Free access
+- Single notes: Do, Re, Mi
+- Pattern section: first/easy pattern
+- Songs: first song
 
-## Build APK with GitHub (no Android Studio needed)
-1. Create a new GitHub repository.
-2. Upload ALL files and folders from this project, including the `.github` folder.
-3. Commit to `main`.
-4. Open GitHub -> Actions -> `Build Android APK`.
-5. Press `Run workflow` if it did not run automatically.
-6. Wait for the green check mark.
-7. Open the workflow run.
-8. Under `Artifacts`, download `SolfaCoach-debug-apk`.
-9. Extract the ZIP and install `app-debug.apk` on your Android phone.
+## Premium
+- 1 month: 199,000 toman
+- 3 months: 499,000 toman
+- 6 months: 799,000 toman
+- Unlocks all notes, patterns and songs until subscription expiry.
 
-## First launch
-Android asks for Microphone permission. Choose **Allow while using the app**.
+## Payment mode in this test build
+`DEMO_PAYMENT = true` in `MainActivity.kt`.
+Selecting a plan simulates successful payment and stores the subscription expiry locally.
+This is intentionally for testing the full UX.
 
-For best testing accuracy:
-- Use a quiet room.
-- Hold a vowel such as "Ah" steadily for 1–2 seconds.
-- If playing the target note through the phone speaker, wait until playback finishes before singing.
-- Headphones are even better because the microphone will not hear the reference tone.
+## Production payment
+Before publishing:
+1. Change `DEMO_PAYMENT = false`.
+2. Add a secure HTTPS backend.
+3. Create payment request on the backend with your chosen Iranian payment gateway.
+4. Open the returned gateway URL in Android.
+5. After callback, verify the payment token on the backend.
+6. Only after server verification should the app receive and store the subscription expiry.
 
-## Pitch tolerance
-The demo accepts a note when it stays within approximately ±35 cents for several consecutive detection frames.
+Never activate premium only from a browser/deep-link `status=ok`, because that can be forged.
 
-## Package
-`com.bardia.solfacoach`
+## Branding
+- Installed app label: `مربی سولفژ`
+- Launcher icon: music note
+- Bardia Arman developer logo shown at top of the app.
+
+## Build APK
+GitHub -> Actions -> Build Android APK -> Run workflow.
+Download the artifact `SolfaCoach-debug-apk`.

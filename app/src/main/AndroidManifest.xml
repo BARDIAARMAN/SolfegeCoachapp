@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:label="Solfa Coach"
+        android:label="مربی سولفژ"
+        android:icon="@drawable/ic_launcher_note"
+        android:roundIcon="@drawable/ic_launcher_note"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="false">
         <activity
@@ -13,6 +16,14 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Payment callback hook for the production gateway -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="solfacoach" android:host="payment" />
             </intent-filter>
         </activity>
     </application>
